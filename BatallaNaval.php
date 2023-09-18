@@ -4,65 +4,30 @@
     table,td {
         border: 1px black solid;
         border-collapse: collapse;
+        text-align: center;
+        width: 25px;
     }
 </style>
 
 <table>
 <?php
 
-$vaixells = array("fragata" => 4,"submarino" => 3);
-$fragata = $vaixells["fragata"];
-$submarino = $vaixells["submarino"];
-
-//$posiciones_fregatas = array();
-echo "<tr>\n"; 
 $n=10;
 $alpha=range("A","Z");
-echo "<td></td>\n";
-for ($i=-1;$i<=$n;$i++) {
-    if ($i > 0) {
-        echo "<td style='text-align: center'> $i </td>\n";
-    }
-}
-echo "</tr>\n";
 
-for ($i=1;$i<=10;$i++) {
+for ($i=0;$i<=$n;$i++) {
     echo "<tr>\n";
-    echo "<td style='text-align: center; width: 25px'>".$alpha[$i-1]."</td>\n";
-    for ($x=1;$x<=$n;$x++){
-        $random = rand(0,5);
-
-        if ($random == 0) {
-            echo "<td style='width: 50px'></td>\n";
+    echo "<td>".$alpha[$i-1]."</td>\n";
+    for ($x=1;$x<=$n;$x++) {
+        //echo "<td> x=$x i=$i </td>\n";
+        if ($i==0) {
+            echo "<td>$x</td>";
         }
-        if ($random == 1) {
-            if ($fragata>0) {
-                echo "<td style='width: 50px'>F</td>\n";
-                //$posiciones_fregatas[] = [$x,$alpha[$i-1]];
-                $fragata-=1;
-            }
-            else {
-                echo "<td style='width: 50px'></td>\n";
-            }   
+        else {
+            echo "<td></td>";
         }
-        if ($random == 2) {
-            if ($submarino>0) {
-                echo "<td style='width: 50px'>S</td>\n";
-                echo "<td style='width: 50px'>S</td>\n";
-                $submarino-=1;
-            }
-            else {
-                echo "<td style='width: 50px'></td>\n";
-            }   
-        }
-        if ($random > 2) {
-            echo "<td style='width: 50px'></td>\n";
-        }
-     
-        
     }
     echo "</tr>\n";
 }
-//var_dump($posiciones_fregatas);
 ?>
 </table>
