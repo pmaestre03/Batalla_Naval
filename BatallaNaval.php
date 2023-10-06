@@ -6,6 +6,7 @@
         border-collapse: collapse;
         text-align: center;
         width: 25px;
+        background-color:blue;
     }
 </style>
 
@@ -28,34 +29,53 @@ for ($i=0;$i<$n;$i++) {
     }
 }
 while ($posiciones==false) {
-    for ($i=0;$i<3;$i++) {
+    for ($i=0;$i<4;) {
         $columna = rand(1,$n-1);
         $fila = rand(1,$n-1);
-        array_push($submarino,[$alpha[$columna],$fila]);
+        if ($matriu[$fila][$columna] == 0) {
+            array_push($fragata,[$alpha[$columna],$fila]);
+            $matriu[$fila][$columna] = 1;
+            $i++;
+        }
     }
-    for ($i=0;$i<2;$i++) {
+    for ($i=0;$i<3;) {
         $columna = rand(1,$n-1);
         $fila = rand(1,$n-1);
-        array_push($destructor,[$alpha[$columna],$fila]);
+        $orientado = rand(0,3);
+        for ($j=0;$j=1;) 
+        if ($matriu[$fila][$columna] == 0) {
+            array_push($submarino,[$alpha[$columna],$fila]);
+            $matriu[$fila][$columna] = 2;
+            $i++;
+        }
     }
-    for ($i=0;$i<1;$i++) {
+    for ($i=0;$i<2;) {
         $columna = rand(1,$n-1);
         $fila = rand(1,$n-1);
-        array_push($portaviones,[$alpha[$columna],$fila]);
+        if ($matriu[$fila][$columna] == 0) {
+            array_push($destructor,[$alpha[$columna],$fila]);
+            $matriu[$fila][$columna] = 3;
+            $i++;
+        }
     }
-    for ($i=0;$i<4;$i++) {
+    for ($i=0;$i<1;) {
         $columna = rand(1,$n-1);
         $fila = rand(1,$n-1);
-        array_push($fragata,[$alpha[$columna],$fila]);
+        if ($matriu[$fila][$columna] == 0) {
+            array_push($portaviones,[$alpha[$columna],$fila]);
+            $matriu[$fila][$columna] = 4;
+            $i++;
+        }
     }
     $posiciones = true;
 }
+
 for ($i=0;$i<=$n;$i++) {
     echo "<tr>\n";
-    echo "<td>".$alpha[$i-1]."</td>\n";
+    echo "<td style='background-color:white;'>".$alpha[$i-1]."</td>\n";
     for ($x=1;$x<=$n;$x++) {
         if ($i==0) {
-            echo "<td>$x</td>";
+            echo "<td style='background-color:white;'>$x</td>";
         }
         else {
             for ($j=0;$j<3;$j++) {
@@ -87,6 +107,5 @@ for ($i=0;$i<=$n;$i++) {
     }
     echo "</tr>\n";
 }
-//var_dump($partida[10-1]);
 ?>
 </table>
